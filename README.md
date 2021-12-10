@@ -1,39 +1,48 @@
 # Solargraph::DeadEnd
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/solargraph/dead_end`. To experiment with that code, run `bin/console` for an interactive prompt.
+This gem is a plugin for the Solargraph language server, to report missing do(s) and end(s) using [DeadEnd](https://github.com/zombocom/dead_end) inside your editor!
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
+The pitch for DeadEnd is that Ruby is currently bad at identifying why your blocks are broken:
 
 ```ruby
-gem 'solargraph-dead_end'
+# test_simple_de.rb
+class MyClass
+  def missing_end_method
+end
 ```
 
-And then execute:
+```
+ ⚡  ruby test_simple_de.rb
+test_simple_de.rb:3: syntax error, unexpected end-of-input, expecting `end'
 
-    $ bundle install
+```
 
-Or install it yourself as:
+... DeadEnd improves on that:
 
-    $ gem install solargraph-dead_end
+```
+ ⚡ dead_end test_simple_de.rb
+--> ~/test_simple_de.rb
+```
 
-## Usage
+```
+Unmatched keyword, missing `end' ?
 
-TODO: Write usage instructions here
+  1  class MyClass
+❯ 2    def missing_end_method
+  3  end
+```
 
-## Development
+Now you can get this feedback in your editor!
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+## Installation
+`gem install solargraph-dead_end`
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+And don't forget to add it to your .solargraph.yml:
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/iftheshoefritz/solargraph-dead_end.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```
+reporters:
+- dead_end
+...
+plugins:
+- solargraph-dead_end
+```
