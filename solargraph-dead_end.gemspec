@@ -5,11 +5,11 @@ require_relative "lib/solargraph/dead_end/version"
 Gem::Specification.new do |spec|
   spec.name = "solargraph-dead_end"
   spec.version = Solargraph::DeadEnd::VERSION
-  spec.authors = ["Fritz Meissner"]
-  spec.email = ["fritz.meissner@gmail.com"]
+  spec.authors = ["Fritz Meissner", "Jared Turner", "Nick Charlton"]
+  spec.email = ["fritz.meissner@gmail.com", "nick@nickcharlton.net", "jared.turner@thoughtbot.com"]
 
   spec.summary = "Solargraph DeadEnd reporter"
-  spec.description = "Solargraph DeadEnd reporter"
+  spec.description = "Solargraph DeadEnd reporter tells you where you're missing a closing `end` for your method definitions or blocks"
   spec.homepage = "https://github.com/iftheshoefritz/solargraph-dead_end"
   spec.license = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
